@@ -54,6 +54,21 @@
             position: relative;
         }
 
+        .letter-atas {
+            position: absolute;
+            top: -40px; /* Jarak teks di atas punggung amplop */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 16px;
+            font-weight: bold;
+            color: #745c47;
+            white-space: nowrap; /* Biar teks gak patah jadi 2 baris */
+            z-index: 10; /* Di atas amplop */
+            pointer-events: none; /* Biar kalau gak sengaja ke-klik, kliknya tembus ke amplop */
+            transition: opacity 0.4s ease;
+
+        }
+
         /* --- STYLING AMPLOP --- */
         .envelope-container {
             position: relative;
@@ -142,7 +157,7 @@
             0% {
                 transform: translate(-50%, -50%) scale(0) rotate(0deg);
                 opacity: 0;
-            }
+            }      
             15% {
                 opacity: 1;
             }
@@ -177,8 +192,10 @@
     <div class="page-wrapper" id="mainWrapper">
         
         <div class="screen-one">
+            
             <div class="envelope-container" id="envelope">
-                <div class="letter">Tap to Open 🌸</div>
+                <div class="letter-atas">Tap To Open 🌸</div>    
+                <div class="letter">BAAA</div>
                 <div class="envelope-flap"></div>
                 <div class="envelope-front"></div>
             </div>
@@ -186,7 +203,7 @@
         </div>
 
         <div class="screen-two">
-            <h1 class="title-text">A Bouquet for Zoey</h1>
+            <h1 class="title-text">Happy Graduation Azkia</h1>
             <img src="10.png" class="bouquet-display" alt="Bouquet">
         </div>
 
