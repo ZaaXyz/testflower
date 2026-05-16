@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowers Gift Bloom</title>
+    <style>
+        /* --- CSS BASE --- */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #f6efe2; /* Latar krem estetik khas webnya */
+            overflow: hidden;
+            font-family: 'Georgia', serif;
+        }
+
+        /* Container Geser Otomatis ke Atas */
+        .page-wrapper {
+            width: 100%;
+            height: 200vh; /* 2 halaman ditumpuk vertikal */
+            display: flex;
+            flex-direction: column;
+            transition: transform 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        /* Halaman 1: Amplop dan Ledakan Bunga */
+        .screen-one {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Halaman 2: Buket & Menu (Awalnya di bawah layar) */
+        .screen-two {
+            width: 100%;
+            height: 100vh;
+            background-color: #f6efe2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* --- STYLING AMPLOP --- */
+        .envelope-container {
+            position: relative;
+            width: 180px;
+            height: 120px;
+            background-color: #dfcfb7;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            z-index: 2;
+            transition: opacity 0.5s ease;
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0; left: 0;
+            border-left: 90px solid transparent;
+            border-right: 90px solid transparent;
+            border-top: 65px solid #cbbaa1;
+            transform-origin: top;
+            transition: transform 0.5s ease;
+            z-index: 4;
+        }
+
+        .envelope-front {
+            position: absolute;
+            bottom: 0; left: 0;
+            border-left: 90px solid #decdaf;
+            border-right: 90px solid #decdaf;
+            border-bottom: 65px solid #d0be9f;
+            z-index: 3;
+        }
+
+        .letter {
+            position: absolute;
+            bottom: 5px; left: 10px;
+            width: 160px; height: 90px;
+            background: #fff;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 11px;
+            color: #88745a;
+            transition: transform 0.5s ease 0.2s;
+        }
+
+        /* Trigger Buka Amplop */
+        .envelope-container.open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+        .envelope-container.open .letter {
+            transform: translateY(-25px);
+        }
+        .envelope-container.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* --- ANIMASI BUNGA MEKAR MENUHIN LAYAR --- */
+        .flower-layer {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 5;
+        }
+        
+    
+
+        .bloom-flower {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: var(--size);
+            height: var(--size);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0;
+            /* Iterasi animasi mekar membesar dari tengah */
+            animation: expandAndStay 3s forwards cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        @keyframes expandAndStay {
+            0% {
+                transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: 1;
+            }
+            100% {
+                /* Bergeser memutar membentuk formasi melingkar di layar */
+                transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1) rotate(var(--r));
+                opacity: 1;
+            }
+        }
+
+        /* --- SCREEN KEDUA (BUKET & TEKS) --- */
+        .title-text {
+            font-size: 24px;
+            color: #b9b9b9;
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 99;
+            -webkit-text-stroke: 10px #c5ae89; /* Ketebalan dan warna stroke */
+
+        }
+
+        .bouquet-display {
+            width: 320px;
+            height: auto;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.05));
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper" id="mainWrapper">
+        
+        <div class="screen-one">
+            <div class="envelope-container" id="envelope">
+                <div class="letter">Tap to Open 🌸</div>
+                <div class="envelope-flap"></div>
+                <div class="envelope-front"></div>
+            </div>
+            <div class="flower-layer" id="flowerGarden"></div>
+        </div>
+
+        <div class="screen-two">
+            <h1 class="title-text">A Bouquet for Zoey</h1>
+            <img src="10.png" class="bouquet-display" alt="Bouquet">
+        </div>
+
+    </div>
+
+    <script>
+        document.getElementById('envelope').addEventListener('click', function() {
+            const envelope = this;
+            
+            // 1. Amplop Kebuka
+            envelope.classList.add('open');
+            
+            // 2. Muntahkan kembang melingkar menuhin layar setelah amplop kebuka dikit
+            setTimeout(() => {
+                startBloomExplosion();
+            }, 300);
+
+            // 3. Setelah layar ketutup bunga, hilangkan amplop di background
+            setTimeout(() => {
+                envelope.classList.add('fade-out');
+            }, 1500);
+
+            // 4. TRANSISI UTAMA: Layar otomatis kegeser ke atas (pindah ke buket)
+            setTimeout(() => {
+                document.getElementById('mainWrapper').style.transform = 'translateY(-100vh)';
+            }, 3500); // Waktu jeda menikmati layar penuh bunga sebelum kegeser
+        });
+
+        function startBloomExplosion() {
+            const garden = document.getElementById('flowerGarden');
+            const totalFlowers = 180; // Ditambahin biar tumpukan kembangnya padet kek di video
+
+            // Aset gambar bunga cat air transparan bermacam jenis
+            const flowerAssets = [
+                '1.png', // Rose Pink
+                '2.png', // Yellow Blossom
+                '3.png', // Petal Soft
+                '4.png', // Rose Pink
+                '5.png', // Yellow Blossom
+                '6.png',
+                '7.png', // Rose Pink
+                '8.png',
+                '9.png',// Yellow Blossom
+                '10.png',
+            ];
+
+            for (let i = 0; i < totalFlowers; i++) {
+                const flower = document.createElement('div');
+                flower.classList.add('bloom-flower');
+                
+                const randomImg = flowerAssets[Math.floor(Math.random() * flowerAssets.length)];
+                flower.style.backgroundImage = `url('${randomImg}')`;
+                
+                // LOGIKA PUSARAN MELINGKAR (Spiraling Spread)
+                // i yang membesar bikin radius lingkaran makin keluar menutupi layar monitor/HP
+                const angle = (i * 0.15); 
+                const radius = i * 2.8; // Mengatur kerapatan tumpukan bunga
+                
+                const targetX = Math.cos(angle) * radius + (Math.random() - 0.5) * 40;
+                const targetY = Math.sin(angle) * radius + (Math.random() - 0.5) * 40;
+                
+                // Variasi ukuran kembang
+                const size = Math.random() * 60 + 60; // Kisaran 60px - 120px
+                const rotation = Math.random() * 360;
+
+                // Tanam variabel ke CSS
+                flower.style.setProperty('--x', `${targetX}px`);
+                flower.style.setProperty('--y', `${targetY}px`);
+                flower.style.setProperty('--r', `${rotation}deg`);
+                flower.style.setProperty('--size', `${size}px`);
+                
+                // Efek delay berurutan biar mekarnya melingkar dari dalem keluar (kayak ombak)
+                flower.style.animationDelay = `${i * 0.012}s`;
+                
+                garden.appendChild(flower);
+            }
+        }
+    </script>
+</body>
+</html>

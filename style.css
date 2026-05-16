@@ -1,0 +1,117 @@
+body {
+    background-color: #f7f3eb; /* Warna kertas koran/aesthetic hangat */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Georgia', serif;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- AMPLOB STYLE --- */
+.envelope-wrapper {
+    position: absolute;
+    width: 250px;
+    height: 170px;
+    background-color: #d8c3a5;
+    cursor: pointer;
+    transition: opacity 0.8s ease 2s, transform 0.8s ease 2s; /* Menghilang setelah 2 detik */
+    z-index: 2;
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0; left: 0;
+    border-left: 125px solid transparent;
+    border-right: 125px solid transparent;
+    border-top: 90px solid #b8a181;
+    transform-origin: top;
+    transition: transform 0.6s ease;
+    z-index: 3;
+}
+
+/* Ketika di-klik, amplop kebuka & lama-lama ilang */
+.envelope-wrapper.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+.envelope-wrapper.fade-out {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+/* --- PARTIKEL BUNGA TERBANG --- */
+.flower-garden {
+    position: absolute;
+    top: 20%; left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.flower-particle {
+    position: absolute;
+    width: 250px; /* Ukuran kembang kecil-kecil */
+    height: 250px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0;
+    animation: flyAway 2.5s forwards cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes flyAway {
+    0% {
+        transform: translate(0, 0) scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+        transform: translate(0, -20px) scale(1.2);
+    }
+    100% {
+        /* Nilai var(--x), var(--y), dan var(--r) bakal diisi acak oleh JS */
+        transform: translate(var(--x), var(--y)) scale(0.5) rotate(var(--r));
+        opacity: 0;
+    }
+}
+
+/* --- BUKET AKHIR STYLE --- */
+.bouquet-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transform: scale(0.7);
+    transition: opacity 1.5s ease 2.5s, transform 1.5s ease 2.5s; /* Muncul setelah amplop lenyap */
+    z-index: 1;
+}
+
+.bouquet-container.show {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.bouquet-text {
+    font-size: 24px;
+    color: #555;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.bouquet-img {
+    width: 280px;
+    height: auto;
+    border-radius: 10px;
+}
