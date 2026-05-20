@@ -1,286 +1,501 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flowers Gift Bloom</title>
-    <style>
-        /* --- CSS BASE --- */
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: #f6efe2; /* Latar krem estetik khas webnya */
-            overflow: hidden;
-            font-family: 'Georgia', serif;
-        }
-        @import url('https://fonts.googleapis.com/css2?family=Bungee&family=Great+Vibes&family=Lobster&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        .lobster-regular {
-        font-family: "Lobster", sans-serif;
-        font-weight: 400;
-        font-style: normal;
-}
+  <title>Graduation Gift</title>
 
-        /* Container Geser Otomatis ke Atas */
-        .page-wrapper {
-            width: 100%;
-            height: 200vh; /* 2 halaman ditumpuk vertikal */
-            display: flex;
-            flex-direction: column;
-            transition: transform 1.5s cubic-bezier(0.65, 0, 0.35, 1);
-        }
+  <!-- Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
 
-        /* Halaman 1: Amplop dan Ledakan Bunga */
-        .screen-one {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
+  <style>
+    /* =========================
+       RESET
+    ========================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        /* Halaman 2: Buket & Menu (Awalnya di bawah layar) */
-        .screen-two {
-            width: 100%;
-            height: 100vh;
-            background-color: #f6efe2;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
+    body {
+      overflow-x: hidden;
+      background: #f6efe2;
+      font-family: "Poppins", sans-serif;
+    }
 
-        .letter-atas {
-            position: absolute;
-            top: -40px; /* Jarak teks di atas punggung amplop */
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 16px;
-            font-weight: bold;
-            color: #745c47;
-            white-space: nowrap; /* Biar teks gak patah jadi 2 baris */
-            z-index: 10; /* Di atas amplop */
-            pointer-events: none; /* Biar kalau gak sengaja ke-klik, kliknya tembus ke amplop */
-            transition: opacity 0.4s ease;
+    /* =========================
+       PAGE
+    ========================= */
+    .page-wrapper {
+      width: 100%;
+      height: 200vh;
 
-        }
+      display: flex;
+      flex-direction: column;
 
-        /* --- STYLING AMPLOP --- */
-        .envelope-container {
-            position: relative;
-            width: 180px;
-            height: 120px;
-            background-color: #dfcfb7;
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            z-index: 2;
-            transition: opacity 0.5s ease;
-        }
+      transition: transform 1.5s ease;
+    }
 
-        .envelope-flap {
-            position: absolute;
-            top: 0; left: 0;
-            border-left: 90px solid transparent;
-            border-right: 90px solid transparent;
-            border-top: 65px solid #cbbaa1;
-            transform-origin: top;
-            transition: transform 0.5s ease;
-            z-index: 4;
-        }
+    section {
+      width: 100%;
+      height: 100vh;
 
-        .envelope-front {
-            position: absolute;
-            bottom: 0; left: 0;
-            border-left: 90px solid #decdaf;
-            border-right: 90px solid #decdaf;
-            border-bottom: 65px solid #d0be9f;
-            z-index: 3;
-        }
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-        .letter {
-            position: absolute;
-            bottom: 5px; left: 10px;
-            width: 160px; height: 90px;
-            background: #fff;
-            z-index: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 11px;
-            color: #88745a;
-            transition: transform 0.5s ease 0.2s;
-        }
+      position: relative;
+    }
 
-        /* Trigger Buka Amplop */
-        .envelope-container.open .envelope-flap {
-            transform: rotateX(180deg);
-            z-index: 0;
-        }
-        .envelope-container.open .letter {
-            transform: translateY(-25px);
-        }
-        .envelope-container.fade-out {
-            opacity: 0;
-            pointer-events: none;
-        }
+    /* =========================
+       BACKGROUND SPARKLE
+    ========================= */
+    .sparkle {
+      position: absolute;
 
-        /* --- ANIMASI BUNGA MEKAR MENUHIN LAYAR --- */
-        .flower-layer {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 5;
-        }
-        
-    
+      width: 6px;
+      height: 6px;
 
-        .bloom-flower {
-            position: absolute;
-            top: 50%; left: 50%;
-            width: var(--size);
-            height: var(--size);
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            opacity: 0;
-            /* Iterasi animasi mekar membesar dari tengah */
-            animation: expandAndStay 3s forwards cubic-bezier(0.25, 1, 0.5, 1);
-        }
+      border-radius: 50%;
+      background: rgba(255,255,255,0.8);
 
-        @keyframes expandAndStay {
-            0% {
-                transform: translate(-50%, -50%) scale(0) rotate(0deg);
-                opacity: 0;
-            }      
-            15% {
-                opacity: 1;
-            }
-            100% {
-                /* Bergeser memutar membentuk formasi melingkar di layar */
-                transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1) rotate(var(--r));
-                opacity: 1;
-            }
-        }
+      animation: twinkle 3s infinite ease-in-out;
+    }
 
-        /* --- SCREEN KEDUA (BUKET & TEKS) --- */
-        .title-text {
-         font-size: 24px;
-         color: #000000; /* Mengubah warna isi teks jadi putih biar stroke-nya keliatan jelas */
-          font-style: "Lobster", sans-serif;
-          margin-bottom: 60px;
-          position: relative;
-          z-index: 99;
-         /* --- TAMBAHAN STROKE DI SINI --- */
-         -webkit-text-stroke: 1px #d0be9f; /* Angka '2px' untuk ketebalan, '#2b5bb3' untuk warna stroke biru */
-}
+    @keyframes twinkle {
+      0%,100% {
+        opacity: 0.2;
+        transform: scale(1);
+      }
 
-        .bouquet-display {
-            width: 320px;
-            height: auto;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.05));
-        }
-    </style>
+      50% {
+        opacity: 1;
+        transform: scale(1.8);
+      }
+    }
+
+    /* =========================
+       ENVELOPE
+    ========================= */
+    .envelope-container {
+      position: relative;
+
+      width: 190px;
+      height: 130px;
+
+      background: #dfcfb7;
+
+      cursor: pointer;
+      z-index: 5;
+
+      border-radius: 6px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+
+      transition: 0.4s;
+    }
+
+    .envelope-container:hover {
+      transform: scale(1.03);
+    }
+
+    .open-text {
+      position: absolute;
+      top: -45px;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      font-size: 18px;
+      color: #7b5f48;
+    }
+
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      border-left: 95px solid transparent;
+      border-right: 95px solid transparent;
+      border-top: 70px solid #c9b59a;
+
+      transform-origin: top;
+      transition: 0.6s;
+
+      z-index: 3;
+    }
+
+    .envelope-front {
+      position: absolute;
+      bottom: 0;
+
+      border-left: 95px solid #decdaf;
+      border-right: 95px solid #decdaf;
+      border-bottom: 70px solid #d0be9f;
+    }
+
+    .letter {
+      position: absolute;
+      bottom: 8px;
+      left: 10px;
+
+      width: 170px;
+      height: 100px;
+
+      background: white;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 4px;
+
+      color: #8a6c52;
+      font-size: 14px;
+
+      transition: 0.5s;
+    }
+
+    .envelope-container.open .envelope-flap {
+      transform: rotateX(180deg);
+    }
+
+    .envelope-container.open .letter {
+      transform: translateY(-30px);
+    }
+
+    /* =========================
+       FLOWERS
+    ========================= */
+    .flower-layer {
+      position: absolute;
+      inset: 0;
+
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .flower {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      width: var(--size);
+      height: var(--size);
+
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+
+      opacity: 0;
+
+      animation: bloom 3s forwards ease;
+    }
+
+    @keyframes bloom {
+      0% {
+        opacity: 0;
+        transform:
+          translate(-50%, -50%)
+          scale(0)
+          rotate(0deg);
+      }
+
+      100% {
+        opacity: 1;
+        transform:
+          translate(
+            calc(-50% + var(--x)),
+            calc(-50% + var(--y))
+          )
+          scale(1)
+          rotate(var(--r));
+      }
+    }
+
+    /* =========================
+       SCREEN 2
+    ========================= */
+    .screen-two {
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .title {
+      font-family: "Lobster", cursive;
+
+      font-size: 52px;
+      color: #7b5f48;
+
+      margin-bottom: 20px;
+
+      animation: fadeUp 1s ease;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #6b5645;
+
+      margin-bottom: 40px;
+
+      animation: fadeUp 1.5s ease;
+    }
+
+    .bouquet {
+      width: 300px;
+
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+
+      animation: float 3s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%,100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================
+       MESSAGE CARD
+    ========================= */
+    .message-card {
+      margin-top: 40px;
+
+      max-width: 700px;
+
+      background: rgba(255,255,255,0.55);
+
+      backdrop-filter: blur(8px);
+
+      padding: 25px;
+      border-radius: 20px;
+
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .photo-frame {
+      width: 180px;
+
+      background: white;
+
+      padding: 10px 10px 25px;
+
+      border-radius: 10px;
+
+      transform: rotate(-3deg);
+
+      box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 220px;
+
+      object-fit: cover;
+
+      border-radius: 5px;
+    }
+
+    .message-text {
+      text-align: left;
+
+      color: #4e3b2d;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+    @media (max-width: 768px) {
+      .title {
+        font-size: 38px;
+      }
+
+      .bouquet {
+        width: 220px;
+      }
+
+      .message-card {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .message-text {
+        text-align: center;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-    <div class="page-wrapper" id="mainWrapper">
-        
-        <div class="screen-one">
-            
-            <div class="envelope-container" id="envelope">
-                <div class="letter-atas">Tap To Open 🌸</div>    
-                <div class="letter">BAAA</div>
-                <div class="envelope-flap"></div>
-                <div class="envelope-front"></div>
-            </div>
-            <div class="flower-layer" id="flowerGarden"></div>
+  <div class="page-wrapper" id="wrapper">
+
+    <!-- SCREEN 1 -->
+    <section>
+
+      <!-- sparkle -->
+      <div class="sparkle" style="top:20%;left:15%"></div>
+      <div class="sparkle" style="top:35%;left:75%"></div>
+      <div class="sparkle" style="top:70%;left:30%"></div>
+      <div class="sparkle" style="top:15%;left:60%"></div>
+
+      <div class="envelope-container" id="envelope">
+
+        <div class="open-text">
+          Tap To Open 🌸
         </div>
 
-        <div class="screen-two">
-            <h1 class="title-text">Happy Graduation Azkia</h1>
-            <img src="10.png" class="bouquet-display" alt="Bouquet">
+        <div class="letter">
+          For Azkia 💌
         </div>
 
-    </div>
+        <div class="envelope-flap"></div>
+        <div class="envelope-front"></div>
 
-    <script>
-        document.getElementById('envelope').addEventListener('click', function() {
-            const envelope = this;
-            
-            // 1. Amplop Kebuka
-            envelope.classList.add('open');
-            
-            // 2. Muntahkan kembang melingkar menuhin layar setelah amplop kebuka dikit
-            setTimeout(() => {
-                startBloomExplosion();
-            }, 300);
+      </div>
 
-            // 3. Setelah layar ketutup bunga, hilangkan amplop di background
-            setTimeout(() => {
-                envelope.classList.add('fade-out');
-            }, 1500);
+      <div class="flower-layer" id="flowers"></div>
 
-            // 4. TRANSISI UTAMA: Layar otomatis kegeser ke atas (pindah ke buket)
-            setTimeout(() => {
-                document.getElementById('mainWrapper').style.transform = 'translateY(-100vh)';
-            }, 3500); // Waktu jeda menikmati layar penuh bunga sebelum kegeser
-        });
+    </section>
 
-        function startBloomExplosion() {
-            const garden = document.getElementById('flowerGarden');
-            const totalFlowers = 180; // Ditambahin biar tumpukan kembangnya padet kek di video
+    <!-- SCREEN 2 -->
+    <section class="screen-two">
 
-            // Aset gambar bunga cat air transparan bermacam jenis
-            const flowerAssets = [
-                '1.png', // Rose Pink
-                '2.png', // Yellow Blossom
-                '3.png', // Petal Soft
-                '4.png', // Rose Pink
-                '5.png', // Yellow Blossom
-                '6.png',
-                '7.png', // Rose Pink
-                '8.png',
-                '9.png',// Yellow Blossom
-                '10.png',
-            ];
+      <h1 class="title">
+        Happy Graduation 🎓
+      </h1>
 
-            for (let i = 0; i < totalFlowers; i++) {
-                const flower = document.createElement('div');
-                flower.classList.add('bloom-flower');
-                
-                const randomImg = flowerAssets[Math.floor(Math.random() * flowerAssets.length)];
-                flower.style.backgroundImage = `url('${randomImg}')`;
-                
-                // LOGIKA PUSARAN MELINGKAR (Spiraling Spread)
-                // i yang membesar bikin radius lingkaran makin keluar menutupi layar monitor/HP
-                const angle = (i * 0.15); 
-                const radius = i * 2.8; // Mengatur kerapatan tumpukan bunga
-                
-                const targetX = Math.cos(angle) * radius + (Math.random() - 0.5) * 40;
-                const targetY = Math.sin(angle) * radius + (Math.random() - 0.5) * 40;
-                
-                // Variasi ukuran kembang
-                const size = Math.random() * 60 + 60; // Kisaran 60px - 120px
-                const rotation = Math.random() * 360;
+      <p class="subtitle">
+        Proud of you always ✨
+      </p>
 
-                // Tanam variabel ke CSS
-                flower.style.setProperty('--x', `${targetX}px`);
-                flower.style.setProperty('--y', `${targetY}px`);
-                flower.style.setProperty('--r', `${rotation}deg`);
-                flower.style.setProperty('--size', `${size}px`);
-                
-                // Efek delay berurutan biar mekarnya melingkar dari dalem keluar (kayak ombak)
-                flower.style.animationDelay = `${i * 0.012}s`;
-                
-                garden.appendChild(flower);
-            }
-        }
-    </script>
+      <img
+        src="10.png"
+        class="bouquet"
+        alt="Bouquet"
+      />
+
+      <div class="message-card">
+
+        <div class="photo-frame">
+          <img src="dia.png" alt="Foto">
+        </div>
+
+        <div class="message-text">
+          Selamat atas kelulusannya ya!
+          Perjalanan kamu sampai di titik ini
+          keren banget dan penuh perjuangan.
+
+          Semoga semua mimpi dan cita-cita
+          kamu bisa tercapai satu per satu.
+          Tetap jadi pribadi hebat dan jangan
+          pernah ragu sama diri sendiri.
+
+          Proud of you always 🌸
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+  <script>
+    const envelope =
+      document.getElementById("envelope");
+
+    const wrapper =
+      document.getElementById("wrapper");
+
+    const flowers =
+      document.getElementById("flowers");
+
+    envelope.addEventListener("click", () => {
+
+      envelope.classList.add("open");
+
+      createFlowers();
+
+      setTimeout(() => {
+        wrapper.style.transform =
+          "translateY(-100vh)";
+      }, 3200);
+
+    });
+
+    function createFlowers() {
+
+      const assets = [
+        "1.png",
+        "2.png",
+        "3.png",
+        "4.png",
+        "5.png"
+      ];
+
+      for (let i = 0; i < 120; i++) {
+
+        const flower =
+          document.createElement("div");
+
+        flower.classList.add("flower");
+
+        const random =
+          assets[
+            Math.floor(Math.random() * assets.length)
+          ];
+
+        flower.style.backgroundImage =
+          `url('${random}')`;
+
+        const angle = i * 0.25;
+        const radius = i * 3;
+
+        const x =
+          Math.cos(angle) * radius;
+
+        const y =
+          Math.sin(angle) * radius;
+
+        flower.style.setProperty("--x", `${x}px`);
+        flower.style.setProperty("--y", `${y}px`);
+        flower.style.setProperty("--r", `${Math.random() * 360}deg`);
+        flower.style.setProperty("--size", `${50 + Math.random() * 60}px`);
+
+        flower.style.animationDelay =
+          `${i * 0.015}s`;
+
+        flowers.appendChild(flower);
+      }
+    }
+  </script>
+
 </body>
 </html>
