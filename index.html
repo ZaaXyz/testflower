@@ -4,209 +4,289 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Graduation Gift</title>
+  <title>Birthday Surprise 🎂</title>
 
-  <!-- Font -->
+  <!-- FONT -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500;600&display=swap"
     rel="stylesheet"
   />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
 
   <style>
-    /* =========================
-       RESET
-    ========================= */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
     }
 
-    body {
-      overflow-x: hidden;
-      background: #f6efe2;
-      font-family: "Poppins", sans-serif;
+    html{
+      scroll-behavior:smooth;
     }
 
-    /* =========================
-       PAGE
-    ========================= */
-    .page-wrapper {
-      width: 100%;
-      height: 200vh;
+    body{
+      overflow-x:hidden;
+      overflow-y:hidden;
 
-      display: flex;
-      flex-direction: column;
+      background:
+        linear-gradient(
+          180deg,
+          #fff1f5,
+          #ffe4ec,
+          #fff0d9
+        );
 
-      transition: transform 1.5s ease;
+      font-family:"Poppins",sans-serif;
     }
 
-    section {
-      width: 100%;
-      height: 100vh;
+    /* ======================
+       WRAPPER
+    ====================== */
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      position: relative;
+    .wrapper{
+      transition:
+        transform 1.8s cubic-bezier(0.77,0,0.18,1);
     }
 
-    /* =========================
-       BACKGROUND SPARKLE
-    ========================= */
-    .sparkle {
-      position: absolute;
+    section{
+      width:100%;
+      min-height:100vh;
 
-      width: 6px;
-      height: 6px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
 
-      border-radius: 50%;
-      background: rgba(255,255,255,0.8);
-
-      animation: twinkle 3s infinite ease-in-out;
+      position:relative;
+      padding:20px;
     }
 
-    @keyframes twinkle {
-      0%,100% {
-        opacity: 0.2;
-        transform: scale(1);
-      }
+    /* ======================
+       CONFETTI
+    ====================== */
 
-      50% {
-        opacity: 1;
-        transform: scale(1.8);
-      }
+    .confetti{
+      position:absolute;
+
+      width:10px;
+      height:18px;
+
+      border-radius:3px;
+
+      opacity:.8;
+
+      animation:fall linear infinite;
     }
 
-    /* =========================
-       ENVELOPE
-    ========================= */
-    .envelope-container {
-      position: relative;
-
-      width: 190px;
-      height: 130px;
-
-      background: #dfcfb7;
-
-      cursor: pointer;
-      z-index: 5;
-
-      border-radius: 6px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-
-      transition: 0.4s;
-    }
-
-    .envelope-container:hover {
-      transform: scale(1.03);
-    }
-
-    .open-text {
-      position: absolute;
-      top: -45px;
-      left: 50%;
-
-      transform: translateX(-50%);
-
-      font-size: 18px;
-      color: #7b5f48;
-    }
-
-    .envelope-flap {
-      position: absolute;
-      top: 0;
-      left: 0;
-
-      border-left: 95px solid transparent;
-      border-right: 95px solid transparent;
-      border-top: 70px solid #c9b59a;
-
-      transform-origin: top;
-      transition: 0.6s;
-
-      z-index: 3;
-    }
-
-    .envelope-front {
-      position: absolute;
-      bottom: 0;
-
-      border-left: 95px solid #decdaf;
-      border-right: 95px solid #decdaf;
-      border-bottom: 70px solid #d0be9f;
-    }
-
-    .letter {
-      position: absolute;
-      bottom: 8px;
-      left: 10px;
-
-      width: 170px;
-      height: 100px;
-
-      background: white;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      border-radius: 4px;
-
-      color: #8a6c52;
-      font-size: 14px;
-
-      transition: 0.5s;
-    }
-
-    .envelope-container.open .envelope-flap {
-      transform: rotateX(180deg);
-    }
-
-    .envelope-container.open .letter {
-      transform: translateY(-30px);
-    }
-
-    /* =========================
-       FLOWERS
-    ========================= */
-    .flower-layer {
-      position: absolute;
-      inset: 0;
-
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    .flower {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-
-      width: var(--size);
-      height: var(--size);
-
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-
-      opacity: 0;
-
-      animation: bloom 3s forwards ease;
-    }
-
-    @keyframes bloom {
-      0% {
-        opacity: 0;
+    @keyframes fall{
+      from{
         transform:
-          translate(-50%, -50%)
+          translateY(-120px)
+          rotate(0deg);
+      }
+
+      to{
+        transform:
+          translateY(120vh)
+          rotate(720deg);
+      }
+    }
+
+    /* ======================
+       SCREEN 1
+    ====================== */
+
+    .screen-one{
+      overflow:hidden;
+    }
+
+    .open-text{
+      position:absolute;
+      top:42%;
+      left:50%;
+
+      transform:translate(-50%,-130px);
+
+      font-size:18px;
+      font-weight:600;
+      color:#ff4f87;
+
+      z-index:9999;
+
+      white-space:nowrap;
+
+      padding:10px 18px;
+      border-radius:30px;
+
+      background:rgba(255,255,255,.65);
+
+      backdrop-filter:blur(8px);
+
+      box-shadow:
+        0 8px 20px rgba(255,79,135,.18);
+    }
+
+    /* ======================
+       ENVELOPE
+    ====================== */
+
+    .envelope-container{
+      position:relative;
+
+      width:210px;
+      height:145px;
+
+      background:#ffc7d7;
+
+      cursor:pointer;
+      z-index:10;
+
+      border-radius:8px;
+
+      box-shadow:
+        0 15px 35px rgba(255,105,150,.2);
+
+      transition:.4s;
+    }
+
+    .envelope-container:hover{
+      transform:
+        scale(1.04)
+        rotate(-1deg);
+    }
+
+    .envelope-flap{
+      position:absolute;
+      top:0;
+      left:0;
+
+      border-left:105px solid transparent;
+      border-right:105px solid transparent;
+      border-top:78px solid #ff9dbc;
+
+      transform-origin:top;
+      transition:.7s;
+
+      z-index:3;
+    }
+
+    .envelope-front{
+      position:absolute;
+      bottom:0;
+
+      border-left:105px solid #ffbdd1;
+      border-right:105px solid #ffbdd1;
+      border-bottom:78px solid #ffacc5;
+    }
+
+    .letter{
+      position:absolute;
+      bottom:8px;
+      left:12px;
+
+      width:185px;
+      height:112px;
+
+      background:white;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      border-radius:6px;
+
+      color:#ff4f87;
+      font-size:15px;
+      font-weight:600;
+
+      transition:.5s;
+    }
+
+    .envelope-container.open .envelope-flap{
+      transform:rotateX(180deg);
+    }
+
+    .envelope-container.open .letter{
+      transform:translateY(-35px);
+    }
+
+    /* ======================
+       BALLOON
+    ====================== */
+
+    .balloon{
+      position:absolute;
+
+      width:70px;
+
+      animation:float 4s infinite ease-in-out;
+    }
+
+    .balloon.left{
+      left:10%;
+      top:18%;
+    }
+
+    .balloon.right{
+      right:10%;
+      top:22%;
+
+      animation-delay:1s;
+    }
+
+    @keyframes float{
+      0%,100%{
+        transform:translateY(0);
+      }
+
+      50%{
+        transform:translateY(-20px);
+      }
+    }
+
+    /* ======================
+       EFFECT
+    ====================== */
+
+    .effect-layer{
+      position:absolute;
+      inset:0;
+
+      overflow:hidden;
+      pointer-events:none;
+    }
+
+    .heart{
+      position:absolute;
+      top:50%;
+      left:50%;
+
+      width:var(--size);
+      height:var(--size);
+
+      background-size:contain;
+      background-repeat:no-repeat;
+      background-position:center;
+
+      opacity:0;
+
+      animation:burst 3s forwards ease;
+    }
+
+    @keyframes burst{
+      0%{
+        opacity:0;
+
+        transform:
+          translate(-50%,-50%)
           scale(0)
           rotate(0deg);
       }
 
-      100% {
-        opacity: 1;
+      100%{
+        opacity:1;
+
         transform:
           translate(
             calc(-50% + var(--x)),
@@ -217,137 +297,134 @@
       }
     }
 
-    /* =========================
+    /* ======================
        SCREEN 2
-    ========================= */
-    .screen-two {
-      flex-direction: column;
-      text-align: center;
-      padding: 20px;
+    ====================== */
+
+    .screen-two{
+      flex-direction:column;
+      text-align:center;
     }
 
-    .title {
-      font-family: "Lobster", cursive;
+    .title{
+      font-family:"Lobster",cursive;
 
-      font-size: 52px;
-      color: #7b5f48;
+      font-size:65px;
+      color:#ff4f87;
 
-      margin-bottom: 20px;
+      margin-bottom:15px;
 
-      animation: fadeUp 1s ease;
+      text-shadow:
+        0 6px 18px rgba(255,79,135,.2);
     }
 
-    .subtitle {
-      font-size: 18px;
-      color: #6b5645;
+    .subtitle{
+      font-size:20px;
+      color:#7a4a5c;
 
-      margin-bottom: 40px;
-
-      animation: fadeUp 1.5s ease;
+      margin-bottom:35px;
     }
 
-    .bouquet {
-      width: 300px;
+    /* ======================
+       CAKE
+    ====================== */
 
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+    .cake{
+      width:320px;
 
-      animation: float 3s infinite ease-in-out;
+      animation:bounce 3s infinite ease-in-out;
+
+      filter:
+        drop-shadow(
+          0 10px 20px rgba(0,0,0,.15)
+        );
     }
 
-    @keyframes float {
-      0%,100% {
-        transform: translateY(0);
+    @keyframes bounce{
+      0%,100%{
+        transform:translateY(0);
       }
 
-      50% {
-        transform: translateY(-12px);
-      }
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
+      50%{
+        transform:translateY(-14px);
       }
     }
 
-    /* =========================
+    /* ======================
        MESSAGE CARD
-    ========================= */
+    ====================== */
+    .message-card.reverse {
+  flex-direction: row-reverse;
+}
+
+@media(max-width: 768px) {
+  .message-card.reverse {
+    flex-direction: column;
+  }
+}
+
     .message-card {
-      margin-top: 40px;
-
-      max-width: 700px;
-
-      background: rgba(255,255,255,0.55);
-
-      backdrop-filter: blur(8px);
-
-      padding: 25px;
-      border-radius: 20px;
-
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-
-      display: flex;
-      align-items: center;
-      gap: 25px;
-    }
-
+  margin-top: 40px;
+  max-width: 900px;
+  background: rgba(255,255,255,.6);
+  backdrop-filter: blur(10px);
+  padding: 28px;
+  border-radius: 24px;
+  box-shadow: 0 12px 35px rgba(255,105,150,.15);
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  text-align: left;
+  color: #5f4150;
+  line-height: 2;
+  font-size: 40px;  
+  font-family: "DynaPuff", system-ui;
+  letter-spacing: .5px;
+}
     .photo-frame {
-      width: 180px;
-
-      background: white;
-
-      padding: 10px 10px 25px;
-
-      border-radius: 10px;
-
-      transform: rotate(-3deg);
-
-      box-shadow: 0 8px 18px rgba(0,0,0,0.1);
-    }
-
+  width: 190px;
+  flex-shrink: 0;
+}
     .photo-frame img {
-      width: 100%;
-      height: 220px;
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+}
 
-      object-fit: cover;
+    .message-text{
+      text-align:left;
 
-      border-radius: 5px;
+      color:#5f4150;
+
+      line-height:1.9;
+      font-size:15px;
     }
 
-    .message-text {
-      text-align: left;
-
-      color: #4e3b2d;
-      line-height: 1.8;
-      font-size: 15px;
-    }
-
-    /* =========================
+    /* ======================
        RESPONSIVE
-    ========================= */
-    @media (max-width: 768px) {
-      .title {
-        font-size: 38px;
+    ====================== */
+
+    @media(max-width:768px){
+
+      .title{
+        font-size:45px;
       }
 
-      .bouquet {
-        width: 220px;
+      .cake{
+        width:230px;
       }
 
-      .message-card {
-        flex-direction: column;
-        text-align: center;
+      .message-card{
+        flex-direction:column;
+        text-align:center;
       }
 
-      .message-text {
-        text-align: center;
+      .message-text{
+        text-align:center;
+      }
+
+      .balloon{
+        width:50px;
       }
     }
   </style>
@@ -355,25 +432,42 @@
 
 <body>
 
-  <div class="page-wrapper" id="wrapper">
+  <!-- CONFETTI -->
+  <div class="confetti" style="left:5%;background:#ff4f87;animation-duration:7s"></div>
+  <div class="confetti" style="left:15%;background:#ffd166;animation-duration:8s"></div>
+  <div class="confetti" style="left:28%;background:#7bdff2;animation-duration:6s"></div>
+  <div class="confetti" style="left:42%;background:#cdb4db;animation-duration:9s"></div>
+  <div class="confetti" style="left:58%;background:#ff8fab;animation-duration:7s"></div>
+  <div class="confetti" style="left:72%;background:#80ed99;animation-duration:8s"></div>
+  <div class="confetti" style="left:88%;background:#ffd166;animation-duration:6s"></div>
+
+  <!-- WRAPPER -->
+  <div class="wrapper" id="wrapper">
 
     <!-- SCREEN 1 -->
-    <section>
+    <section class="screen-one">
 
-      <!-- sparkle -->
-      <div class="sparkle" style="top:20%;left:15%"></div>
-      <div class="sparkle" style="top:35%;left:75%"></div>
-      <div class="sparkle" style="top:70%;left:30%"></div>
-      <div class="sparkle" style="top:15%;left:60%"></div>
+      <!-- balloons -->
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/3468/3468377.png"
+        class="balloon left"
+      />
 
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/3468/3468377.png"
+        class="balloon right"
+      />
+
+      <!-- text -->
+      <div class="open-text">
+        Tap To Open 🎉
+      </div>
+
+      <!-- envelope -->
       <div class="envelope-container" id="envelope">
 
-        <div class="open-text">
-          Tap To Open 🌸
-        </div>
-
         <div class="letter">
-          For Azkia 💌
+          Happy Birthday 💌
         </div>
 
         <div class="envelope-flap"></div>
@@ -381,7 +475,8 @@
 
       </div>
 
-      <div class="flower-layer" id="flowers"></div>
+      <!-- effect -->
+      <div class="effect-layer" id="effects"></div>
 
     </section>
 
@@ -389,36 +484,92 @@
     <section class="screen-two">
 
       <h1 class="title">
-        Happy Graduation 🎓
+        Happy Birthday 🎂
       </h1>
 
       <p class="subtitle">
-        Proud of you always ✨
+        Wishing you happiness, love, and endless joy ✨
       </p>
 
+      <!-- cake -->
       <img
         src="10.png"
-        class="bouquet"
-        alt="Bouquet"
+        class="cake"
+        alt="Cake"
       />
 
+      <!-- message -->
       <div class="message-card">
 
         <div class="photo-frame">
-          <img src="dia.png" alt="Foto">
+          <img src="1c.png" alt="Foto">
         </div>
 
         <div class="message-text">
-          Selamat atas kelulusannya ya!
-          Perjalanan kamu sampai di titik ini
-          keren banget dan penuh perjuangan.
+          Selamat ulang tahun yaa 🎉
 
-          Semoga semua mimpi dan cita-cita
-          kamu bisa tercapai satu per satu.
-          Tetap jadi pribadi hebat dan jangan
-          pernah ragu sama diri sendiri.
+          Semoga di umur yang baru ini
+          semua hal baik selalu datang ke hidup kamu.
+         
+          Semoga makin bahagia,
+          makin cantik,
+          makin sukses,
+          dan semua impian kamu
+          bisa tercapai satu per satu ✨
+  
+          Terima kasih udah jadi orang
+          yang selalu bikin hari terasa spesial 🌸
+        </div>
 
-          Proud of you always 🌸
+      </div>
+
+      <!-- message 2 -->
+      
+      <div class="message-card" style="flex-direction: row-reverse;">
+
+        <div class="photo-frame">
+          <img src="2c.png" alt="Foto">
+        </div>
+
+        <div class="message-text">
+          Selamat ulang tahun yaa 🎉
+
+          Semoga di umur yang baru ini
+          semua hal baik selalu datang ke hidup kamu.
+         
+          Semoga makin bahagia,
+          makin cantik,
+          makin sukses,
+          dan semua impian kamu
+          bisa tercapai satu per satu ✨
+  
+          Terima kasih udah jadi orang
+          yang selalu bikin hari terasa spesial 🌸
+        </div>
+
+      </div>
+
+      <!-- message 3 -->
+      <div class="message-card">
+
+        <div class="photo-frame">
+          <img src="1c.png" alt="Foto">
+        </div>
+
+        <div class="message-text">
+          Selamat ulang tahun yaa 🎉
+
+          Semoga di umur yang baru ini
+          semua hal baik selalu datang ke hidup kamu.
+         
+          Semoga makin bahagia,
+          makin cantik,
+          makin sukses,
+          dan semua impian kamu
+          bisa tercapai satu per satu ✨
+  
+          Terima kasih udah jadi orang
+          yang selalu bikin hari terasa spesial 🌸
         </div>
 
       </div>
@@ -434,45 +585,76 @@
     const wrapper =
       document.getElementById("wrapper");
 
-    const flowers =
-      document.getElementById("flowers");
+    const effects =
+      document.getElementById("effects");
+
+    let opened = false;
 
     envelope.addEventListener("click", () => {
 
+      // cegah spam klik
+      if(opened) return;
+
+      opened = true;
+
       envelope.classList.add("open");
 
-      createFlowers();
+      createExplosion();
 
+      // pindah ke screen 2
       setTimeout(() => {
+
         wrapper.style.transform =
           "translateY(-100vh)";
-      }, 3200);
+
+        // aktifkan scroll
+        setTimeout(() => {
+
+          document.body.style.overflowY =
+            "auto";
+
+          opened = false;
+
+        },1500);
+
+      },2800);
 
     });
 
-    function createFlowers() {
+    function createExplosion(){
 
+      // GANTI DENGAN PNG PUNYA LU
       const assets = [
         "1.png",
         "2.png",
         "3.png",
         "4.png",
-        "5.png"
+        "5.png",
+        "6.png",
+        "7.png",
+        "8.png",
+        "9.png",
+        "10.png"
       ];
 
-      for (let i = 0; i < 120; i++) {
+      // reset effect lama
+      effects.innerHTML = "";
 
-        const flower =
+      for(let i = 0; i < 140; i++){
+
+        const item =
           document.createElement("div");
 
-        flower.classList.add("flower");
+        item.classList.add("heart");
 
         const random =
           assets[
-            Math.floor(Math.random() * assets.length)
+            Math.floor(
+              Math.random() * assets.length
+            )
           ];
 
-        flower.style.backgroundImage =
+        item.style.backgroundImage =
           `url('${random}')`;
 
         const angle = i * 0.25;
@@ -484,17 +666,32 @@
         const y =
           Math.sin(angle) * radius;
 
-        flower.style.setProperty("--x", `${x}px`);
-        flower.style.setProperty("--y", `${y}px`);
-        flower.style.setProperty("--r", `${Math.random() * 360}deg`);
-        flower.style.setProperty("--size", `${50 + Math.random() * 60}px`);
+        item.style.setProperty("--x",`${x}px`);
+        item.style.setProperty("--y",`${y}px`);
+        item.style.setProperty("--r",`${Math.random()*360}deg`);
+        item.style.setProperty("--size",`${40 + Math.random()*40}px`);
 
-        flower.style.animationDelay =
+        item.style.animationDelay =
           `${i * 0.015}s`;
 
-        flowers.appendChild(flower);
+        effects.appendChild(item);
       }
     }
+
+    // kalau scroll balik ke atas
+    window.addEventListener("scroll", () => {
+
+      if(window.scrollY < 50){
+
+        wrapper.style.transform =
+          "translateY(0)";
+
+        document.body.style.overflowY =
+          "hidden";
+
+        envelope.classList.remove("open");
+      }
+    });
   </script>
 
 </body>
