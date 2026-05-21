@@ -7,10 +7,7 @@
   <title>Birthday Surprise 🎂</title>
 
   <!-- FONT -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500;600&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400..700&display=swap" rel="stylesheet">
@@ -28,7 +25,7 @@
 
     body{
       overflow-x:hidden;
-      overflow-y:hidden;
+      overflow-y:scroll;
 
       background:
         linear-gradient(
@@ -41,10 +38,7 @@
       font-family:"Poppins",sans-serif;
     }
 
-    /* ======================
-       WRAPPER
-    ====================== */
-
+    /* WRAPPER */
     .wrapper{
       transition:
         transform 1.8s cubic-bezier(0.77,0,0.18,1);
@@ -62,10 +56,7 @@
       padding:20px;
     }
 
-    /* ======================
-       CONFETTI
-    ====================== */
-
+    /* CONFETTI */
     .confetti{
       position:absolute;
 
@@ -93,23 +84,23 @@
       }
     }
 
-    /* ======================
-       SCREEN 1
-    ====================== */
-
+    /* SCREEN 1 */
     .screen-one{
       overflow:hidden;
     }
 
     .open-text{
       position:absolute;
+
       top:42%;
       left:50%;
 
-      transform:translate(-50%,-130px);
+      transform:
+        translate(-50%,-130px);
 
       font-size:18px;
       font-weight:600;
+
       color:#ff4f87;
 
       z-index:9999;
@@ -117,9 +108,11 @@
       white-space:nowrap;
 
       padding:10px 18px;
+
       border-radius:30px;
 
-      background:rgba(255,255,255,.65);
+      background:
+        rgba(255,255,255,.65);
 
       backdrop-filter:blur(8px);
 
@@ -127,10 +120,7 @@
         0 8px 20px rgba(255,79,135,.18);
     }
 
-    /* ======================
-       ENVELOPE
-    ====================== */
-
+    /* ENVELOPE */
     .envelope-container{
       position:relative;
 
@@ -140,6 +130,7 @@
       background:#ffc7d7;
 
       cursor:pointer;
+
       z-index:10;
 
       border-radius:8px;
@@ -158,6 +149,7 @@
 
     .envelope-flap{
       position:absolute;
+
       top:0;
       left:0;
 
@@ -166,6 +158,7 @@
       border-top:78px solid #ff9dbc;
 
       transform-origin:top;
+
       transition:.7s;
 
       z-index:3;
@@ -182,6 +175,7 @@
 
     .letter{
       position:absolute;
+
       bottom:8px;
       left:12px;
 
@@ -197,6 +191,7 @@
       border-radius:6px;
 
       color:#ff4f87;
+
       font-size:15px;
       font-weight:600;
 
@@ -211,16 +206,14 @@
       transform:translateY(-35px);
     }
 
-    /* ======================
-       BALLOON
-    ====================== */
-
+    /* BALLOON */
     .balloon{
       position:absolute;
 
       width:70px;
 
-      animation:float 4s infinite ease-in-out;
+      animation:
+        float 4s infinite ease-in-out;
     }
 
     .balloon.left{
@@ -245,20 +238,19 @@
       }
     }
 
-    /* ======================
-       EFFECT
-    ====================== */
-
+    /* EFFECT */
     .effect-layer{
       position:absolute;
       inset:0;
 
       overflow:hidden;
+
       pointer-events:none;
     }
 
     .heart{
       position:absolute;
+
       top:50%;
       left:50%;
 
@@ -271,7 +263,8 @@
 
       opacity:0;
 
-      animation:burst 3s forwards ease;
+      animation:
+        burst 3s forwards ease;
     }
 
     @keyframes burst{
@@ -297,25 +290,151 @@
       }
     }
 
-    /* ======================
-       SCREEN 2
-    ====================== */
-
+    /* SCREEN 2 */
     .screen-two{
       flex-direction:column;
       text-align:center;
+      overflow:hidden;
     }
+
+    /* DECORATION */
+
+    .stars{
+      position:absolute;
+      inset:0;
+
+      background-image:
+        radial-gradient(white 1px, transparent 1px);
+
+      background-size:40px 40px;
+
+      opacity:.25;
+
+      pointer-events:none;
+    }
+
+    .bg-glow{
+      position:absolute;
+
+      width:350px;
+      height:350px;
+
+      border-radius:50%;
+
+      filter:blur(100px);
+
+      opacity:.35;
+
+      pointer-events:none;
+    }
+
+    .glow1{
+      background:#ff8fab;
+
+      top:10%;
+      left:-100px;
+    }
+
+    .glow2{
+      background:#ffd166;
+
+      bottom:5%;
+      right:-100px;
+    }
+
+    .floating{
+  position:absolute;
+
+  width:70px;
+
+  animation:
+    floatingAnim 5s ease-in-out infinite;
+
+  pointer-events:none;
+
+  opacity:.9;
+
+  filter:
+    drop-shadow(
+      0 8px 15px rgba(0,0,0,.15)
+    );
+}
+.floating:hover{
+  transform:scale(1.08);
+}
+
+    .floating1{
+      top:12%;
+      left:8%;
+    }
+
+    .floating2{
+      top:18%;
+      right:10%;
+
+      animation-delay:1s;
+    }
+
+    .floating3{
+      bottom:15%;
+      left:12%;
+
+      animation-delay:2s;
+    }
+
+    .floating4{
+      bottom:12%;
+      right:14%;
+
+      animation-delay:3s;
+    }
+
+    .floating5{
+      top:50%;
+      right:4%;
+
+      animation-delay:1.5s;
+    }
+
+    @keyframes floatingAnim{
+      0%,100%{
+        transform:
+          translateY(0)
+          rotate(0deg);
+      }
+
+      50%{
+        transform:
+          translateY(-18px)
+          rotate(8deg);
+      }
+    }
+
+    /* TITLE */
 
     .title{
       font-family:"Lobster",cursive;
 
       font-size:65px;
+
       color:#ff4f87;
 
       margin-bottom:15px;
 
-      text-shadow:
-        0 6px 18px rgba(255,79,135,.2);
+      animation:
+        glow 3s ease-in-out infinite;
+    }
+
+    @keyframes glow{
+      0%,100%{
+        text-shadow:
+          0 0 10px rgba(255,79,135,.2);
+      }
+
+      50%{
+        text-shadow:
+          0 0 25px rgba(255,79,135,.55);
+      }
     }
 
     .subtitle{
@@ -325,14 +444,13 @@
       margin-bottom:35px;
     }
 
-    /* ======================
-       CAKE
-    ====================== */
+    /* CAKE */
 
     .cake{
       width:320px;
 
-      animation:bounce 3s infinite ease-in-out;
+      animation:
+        bounce 3s infinite ease-in-out;
 
       filter:
         drop-shadow(
@@ -350,59 +468,93 @@
       }
     }
 
-    /* ======================
-       MESSAGE CARD
-    ====================== */
-    .message-card.reverse {
-  flex-direction: row-reverse;
-}
+    /* MESSAGE CARD */
 
-@media(max-width: 768px) {
-  .message-card.reverse {
-    flex-direction: column;
-  }
-}
+    .message-card{
+      margin-top:40px;
 
-    .message-card {
-  margin-top: 40px;
-  max-width: 900px;
-  background: rgba(255,255,255,.6);
-  backdrop-filter: blur(10px);
-  padding: 28px;
-  border-radius: 24px;
-  box-shadow: 0 12px 35px rgba(255,105,150,.15);
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  text-align: left;
-  color: #5f4150;
-  line-height: 2;
-  font-size: 40px;  
-  font-family: "DynaPuff", system-ui;
-  letter-spacing: .5px;
-}
-    .photo-frame {
-  width: 190px;
-  flex-shrink: 0;
-}
-    .photo-frame img {
-  width: 100%;
-  height: 230px;
-  object-fit: cover;
-}
+      width:100%;
+      max-width:900px;
+
+      background:
+        rgba(255,255,255,.55);
+
+      backdrop-filter:blur(14px);
+
+      padding:30px;
+
+      border-radius:28px;
+
+      box-shadow:
+        0 15px 40px rgba(255,105,150,.12);
+
+      display:flex;
+      align-items:center;
+
+      gap:32px;
+
+      color:#5f4150;
+
+      font-family:"DynaPuff",system-ui;
+
+      letter-spacing:.4px;
+
+      transition:.4s ease;
+
+      z-index:2;
+    }
+
+    .message-card:hover{
+      transform:translateY(-6px);
+    }
+
+    .message-card.reverse{
+      flex-direction:row-reverse;
+    }
+
+    .photo-frame{
+      width:250px;
+
+      flex-shrink:0;
+
+      border-radius:20px;
+
+      overflow:hidden;
+
+      box-shadow:
+        0 10px 25px rgba(0,0,0,.12);
+    }
+
+    .photo-frame img{
+      width:100%;
+      height:320px;
+
+      object-fit:cover;
+
+      display:block;
+
+      transition:.5s ease;
+    }
+
+    .photo-frame img:hover{
+      transform:scale(1.05);
+    }
 
     .message-text{
       text-align:left;
 
-      color:#5f4150;
+      color:#68495a;
 
-      line-height:1.9;
-      font-size:15px;
+      line-height:2.1;
+
+      font-size:18px;
+
+      font-family:"DynaPuff",system-ui;
+
+      letter-spacing:.5px;
     }
 
-    /* ======================
-       RESPONSIVE
-    ====================== */
+    /* RESPONSIVE */
 
     @media(max-width:768px){
 
@@ -414,7 +566,8 @@
         width:230px;
       }
 
-      .message-card{
+      .message-card,
+      .message-card.reverse{
         flex-direction:column;
         text-align:center;
       }
@@ -447,7 +600,7 @@
     <!-- SCREEN 1 -->
     <section class="screen-one">
 
-      <!-- balloons -->
+      <!-- BALLOON -->
       <img
         src="https://cdn-icons-png.flaticon.com/512/3468/3468377.png"
         class="balloon left"
@@ -458,12 +611,12 @@
         class="balloon right"
       />
 
-      <!-- text -->
+      <!-- TEXT -->
       <div class="open-text">
         Tap To Open 🎉
       </div>
 
-      <!-- envelope -->
+      <!-- ENVELOPE -->
       <div class="envelope-container" id="envelope">
 
         <div class="letter">
@@ -475,7 +628,7 @@
 
       </div>
 
-      <!-- effect -->
+      <!-- EFFECT -->
       <div class="effect-layer" id="effects"></div>
 
     </section>
@@ -483,6 +636,19 @@
     <!-- SCREEN 2 -->
     <section class="screen-two">
 
+      <!-- DECOR -->
+      <div class="stars"></div>
+
+      <div class="bg-glow glow1"></div>
+      <div class="bg-glow glow2"></div>
+
+      <img src="1.png" class="floating floating1">
+      <img src="2.png" class="floating floating2">
+      <img src="3.png" class="floating floating3">
+      <img src="4.png" class="floating floating4">
+      <img src="5.png" class="floating floating5">  
+
+      <!-- TITLE -->
       <h1 class="title">
         Happy Birthday 🎂
       </h1>
@@ -491,14 +657,14 @@
         Wishing you happiness, love, and endless joy ✨
       </p>
 
-      <!-- cake -->
+      <!-- CAKE -->
       <img
         src="10.png"
         class="cake"
         alt="Cake"
       />
 
-      <!-- message -->
+      <!-- MESSAGE 1 -->
       <div class="message-card">
 
         <div class="photo-frame">
@@ -507,25 +673,27 @@
 
         <div class="message-text">
           Selamat ulang tahun yaa 🎉
+          <br><br>
 
           Semoga di umur yang baru ini
           semua hal baik selalu datang ke hidup kamu.
-         
+          <br><br>
+
           Semoga makin bahagia,
           makin cantik,
           makin sukses,
           dan semua impian kamu
           bisa tercapai satu per satu ✨
-  
+          <br><br>
+
           Terima kasih udah jadi orang
           yang selalu bikin hari terasa spesial 🌸
         </div>
 
       </div>
 
-      <!-- message 2 -->
-      
-      <div class="message-card" style="flex-direction: row-reverse;">
+      <!-- MESSAGE 2 -->
+      <div class="message-card reverse">
 
         <div class="photo-frame">
           <img src="2c.png" alt="Foto">
@@ -533,41 +701,47 @@
 
         <div class="message-text">
           Selamat ulang tahun yaa 🎉
+          <br><br>
 
           Semoga di umur yang baru ini
           semua hal baik selalu datang ke hidup kamu.
-         
+          <br><br>
+
           Semoga makin bahagia,
           makin cantik,
           makin sukses,
           dan semua impian kamu
           bisa tercapai satu per satu ✨
-  
+          <br><br>
+
           Terima kasih udah jadi orang
           yang selalu bikin hari terasa spesial 🌸
         </div>
 
       </div>
 
-      <!-- message 3 -->
+      <!-- MESSAGE 3 -->
       <div class="message-card">
 
         <div class="photo-frame">
-          <img src="1c.png" alt="Foto">
+          <img src="3c.png" alt="Foto">
         </div>
 
         <div class="message-text">
           Selamat ulang tahun yaa 🎉
+          <br><br>
 
           Semoga di umur yang baru ini
           semua hal baik selalu datang ke hidup kamu.
-         
+          <br><br>
+
           Semoga makin bahagia,
           makin cantik,
           makin sukses,
           dan semua impian kamu
           bisa tercapai satu per satu ✨
-  
+          <br><br>
+
           Terima kasih udah jadi orang
           yang selalu bikin hari terasa spesial 🌸
         </div>
@@ -592,7 +766,6 @@
 
     envelope.addEventListener("click", () => {
 
-      // cegah spam klik
       if(opened) return;
 
       opened = true;
@@ -601,29 +774,23 @@
 
       createExplosion();
 
+      // hapus efek lama
+      setTimeout(() => {
+        effects.innerHTML = "";
+      },5000);
+
       // pindah ke screen 2
       setTimeout(() => {
 
         wrapper.style.transform =
           "translateY(-100vh)";
 
-        // aktifkan scroll
-        setTimeout(() => {
-
-          document.body.style.overflowY =
-            "auto";
-
-          opened = false;
-
-        },1500);
-
-      },2800);
+      },3200);
 
     });
 
     function createExplosion(){
 
-      // GANTI DENGAN PNG PUNYA LU
       const assets = [
         "1.png",
         "2.png",
@@ -637,7 +804,6 @@
         "10.png"
       ];
 
-      // reset effect lama
       effects.innerHTML = "";
 
       for(let i = 0; i < 140; i++){
@@ -657,7 +823,7 @@
         item.style.backgroundImage =
           `url('${random}')`;
 
-        const angle = i * 0.25;
+        const angle  = i * 0.25;
         const radius = i * 3;
 
         const x =
@@ -678,16 +844,13 @@
       }
     }
 
-    // kalau scroll balik ke atas
+    // balik ke atas otomatis
     window.addEventListener("scroll", () => {
 
       if(window.scrollY < 50){
 
         wrapper.style.transform =
-          "translateY(0)";
-
-        document.body.style.overflowY =
-          "hidden";
+          "translateY(0vh)";
 
         envelope.classList.remove("open");
       }
