@@ -345,7 +345,7 @@
     .floating{
   position:absolute;
 
-  width:70px;
+  width:250px;
 
   animation:
     floatingAnim 5s ease-in-out infinite;
@@ -585,6 +585,10 @@
 
 <body>
 
+  <!-- AUDIO -->
+   <audio autoplay loop>
+      <source src="musik.mp3" type="audio/mpeg">
+    </audio>
   <!-- CONFETTI -->
   <div class="confetti" style="left:5%;background:#ff4f87;animation-duration:7s"></div>
   <div class="confetti" style="left:15%;background:#ffd166;animation-duration:8s"></div>
@@ -620,7 +624,7 @@
       <div class="envelope-container" id="envelope">
 
         <div class="letter">
-          Happy Birthday 💌
+          For Azkia 💌
         </div>
 
         <div class="envelope-flap"></div>
@@ -643,7 +647,7 @@
       <div class="bg-glow glow2"></div>
 
       <img src="1.png" class="floating floating1">
-      <img src="2.png" class="floating floating2">
+      <img src="8.png" class="floating floating2">
       <img src="3.png" class="floating floating3">
       <img src="4.png" class="floating floating4">
       <img src="5.png" class="floating floating5">  
@@ -654,12 +658,13 @@
       </h1>
 
       <p class="subtitle">
-        Wishing you happiness, love, and endless joy ✨
+        I hope you like the website I created.
+hehehehehehehehehehe ✨
       </p>
 
       <!-- CAKE -->
       <img
-        src="10.png"
+        src="buket.png"
         class="cake"
         alt="Cake"
       />
@@ -672,22 +677,7 @@
         </div>
 
         <div class="message-text">
-          Selamat ulang tahun yaa 🎉
-          <br><br>
-
-          Semoga di umur yang baru ini
-          semua hal baik selalu datang ke hidup kamu.
-          <br><br>
-
-          Semoga makin bahagia,
-          makin cantik,
-          makin sukses,
-          dan semua impian kamu
-          bisa tercapai satu per satu ✨
-          <br><br>
-
-          Terima kasih udah jadi orang
-          yang selalu bikin hari terasa spesial 🌸
+          "Hallooo Azkiaa👋 Jadii aku cuma mau ucapin 🥳🥳HAPPY BIRTHDAY!!🥳🎉 ke kamuu. Semoga di usia yang baru ditahun ini sampai tahun-tahun berikut nya kamu selalu diberikan kesehatan, dilancarkan segala urusannya, dan semua harapan serta doa-doa baik kamu segera dikabulkan yaaaa, Aamiiin.
         </div>
 
       </div>
@@ -700,22 +690,7 @@
         </div>
 
         <div class="message-text">
-          Selamat ulang tahun yaa 🎉
-          <br><br>
-
-          Semoga di umur yang baru ini
-          semua hal baik selalu datang ke hidup kamu.
-          <br><br>
-
-          Semoga makin bahagia,
-          makin cantik,
-          makin sukses,
-          dan semua impian kamu
-          bisa tercapai satu per satu ✨
-          <br><br>
-
-          Terima kasih udah jadi orang
-          yang selalu bikin hari terasa spesial 🌸
+          Makasih ya udah selalu jadi sosok yang baik selama ini. Aku berharap kamu selalu dikelilingi oleh orang-orang yang sayang sama kamu, dan semoga hari-hari ke depan membawa banyak kebahagiaan serta kejutan manis buat kamu. Mungkin gaada kata-kata panjang yang bisa ngegambarin semua doa baikku buat kamu, pokonya yang terbaik deh!!
         </div>
 
       </div>
@@ -763,6 +738,11 @@
       document.getElementById("effects");
 
     let opened = false;
+
+    envelope.addEventListener("click", () => {
+  document.getElementById("bgm").play();
+  // ... kode lainnya
+});
 
     envelope.addEventListener("click", () => {
 
