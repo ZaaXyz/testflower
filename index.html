@@ -6,7 +6,6 @@
 
   <title>Birthday Surprise 🎂</title>
 
-  <!-- FONT -->
   <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,33 +24,22 @@
 
     body{
       overflow-x:hidden;
-      overflow-y:scroll;
-
-      background:
-        linear-gradient(
-          180deg,
-          #fff1f5,
-          #ffe4ec,
-          #fff0d9
-        );
-
+      overflow-y:hidden;
+      background:linear-gradient(180deg,#fff1f5,#ffe4ec,#fff0d9);
       font-family:"Poppins",sans-serif;
     }
 
     /* WRAPPER */
     .wrapper{
-      transition:
-        transform 1.8s cubic-bezier(0.77,0,0.18,1);
+      transition:transform 1.8s cubic-bezier(0.77,0,0.18,1);
     }
 
     section{
       width:100%;
       min-height:100vh;
-
       display:flex;
       justify-content:center;
       align-items:center;
-
       position:relative;
       padding:20px;
     }
@@ -59,29 +47,16 @@
     /* CONFETTI */
     .confetti{
       position:absolute;
-
       width:10px;
       height:18px;
-
       border-radius:3px;
-
       opacity:.8;
-
       animation:fall linear infinite;
     }
 
     @keyframes fall{
-      from{
-        transform:
-          translateY(-120px)
-          rotate(0deg);
-      }
-
-      to{
-        transform:
-          translateY(120vh)
-          rotate(720deg);
-      }
+      from{ transform:translateY(-120px) rotate(0deg); }
+      to{ transform:translateY(120vh) rotate(720deg); }
     }
 
     /* SCREEN 1 */
@@ -91,83 +66,53 @@
 
     .open-text{
       position:absolute;
-
       top:42%;
       left:50%;
-
-      transform:
-        translate(-50%,-130px);
-
+      transform:translate(-50%,-130px);
       font-size:18px;
       font-weight:600;
-
       color:#ff4f87;
-
       z-index:9999;
-
       white-space:nowrap;
-
       padding:10px 18px;
-
       border-radius:30px;
-
-      background:
-        rgba(255,255,255,.65);
-
+      background:rgba(255,255,255,.65);
       backdrop-filter:blur(8px);
-
-      box-shadow:
-        0 8px 20px rgba(255,79,135,.18);
+      box-shadow:0 8px 20px rgba(255,79,135,.18);
     }
 
     /* ENVELOPE */
     .envelope-container{
       position:relative;
-
       width:210px;
       height:145px;
-
       background:#ffc7d7;
-
       cursor:pointer;
-
       z-index:10;
-
       border-radius:8px;
-
-      box-shadow:
-        0 15px 35px rgba(255,105,150,.2);
-
+      box-shadow:0 15px 35px rgba(255,105,150,.2);
       transition:.4s;
     }
 
     .envelope-container:hover{
-      transform:
-        scale(1.04)
-        rotate(-1deg);
+      transform:scale(1.04) rotate(-1deg);
     }
 
     .envelope-flap{
       position:absolute;
-
       top:0;
       left:0;
-
       border-left:105px solid transparent;
       border-right:105px solid transparent;
       border-top:78px solid #ff9dbc;
-
       transform-origin:top;
-
       transition:.7s;
-
       z-index:3;
     }
 
     .envelope-front{
       position:absolute;
       bottom:0;
-
       border-left:105px solid #ffbdd1;
       border-right:105px solid #ffbdd1;
       border-bottom:78px solid #ffacc5;
@@ -175,26 +120,18 @@
 
     .letter{
       position:absolute;
-
       bottom:8px;
       left:12px;
-
       width:185px;
       height:112px;
-
       background:white;
-
       display:flex;
       justify-content:center;
       align-items:center;
-
       border-radius:6px;
-
       color:#ff4f87;
-
       font-size:15px;
       font-weight:600;
-
       transition:.5s;
     }
 
@@ -209,84 +146,47 @@
     /* BALLOON */
     .balloon{
       position:absolute;
-
       width:70px;
-
-      animation:
-        float 4s infinite ease-in-out;
+      animation:float 4s infinite ease-in-out;
     }
 
-    .balloon.left{
-      left:10%;
-      top:18%;
-    }
-
-    .balloon.right{
-      right:10%;
-      top:22%;
-
-      animation-delay:1s;
-    }
+    .balloon.left{ left:10%; top:18%; }
+    .balloon.right{ right:10%; top:22%; animation-delay:1s; }
 
     @keyframes float{
-      0%,100%{
-        transform:translateY(0);
-      }
-
-      50%{
-        transform:translateY(-20px);
-      }
+      0%,100%{ transform:translateY(0); }
+      50%{ transform:translateY(-20px); }
     }
 
     /* EFFECT */
     .effect-layer{
       position:absolute;
       inset:0;
-
       overflow:hidden;
-
       pointer-events:none;
     }
 
     .heart{
       position:absolute;
-
       top:50%;
       left:50%;
-
       width:var(--size);
       height:var(--size);
-
       background-size:contain;
       background-repeat:no-repeat;
       background-position:center;
-
       opacity:0;
-
-      animation:
-        burst 3s forwards ease;
+      animation:burst 3s forwards ease;
     }
 
     @keyframes burst{
       0%{
         opacity:0;
-
-        transform:
-          translate(-50%,-50%)
-          scale(0)
-          rotate(0deg);
+        transform:translate(-50%,-50%) scale(0) rotate(0deg);
       }
-
       100%{
         opacity:1;
-
-        transform:
-          translate(
-            calc(-50% + var(--x)),
-            calc(-50% + var(--y))
-          )
-          scale(1)
-          rotate(var(--r));
+        transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1) rotate(var(--r));
       }
     }
 
@@ -298,209 +198,97 @@
     }
 
     /* DECORATION */
-
     .stars{
       position:absolute;
       inset:0;
-
-      background-image:
-        radial-gradient(white 1px, transparent 1px);
-
+      background-image:radial-gradient(white 1px, transparent 1px);
       background-size:40px 40px;
-
       opacity:.25;
-
       pointer-events:none;
     }
 
     .bg-glow{
       position:absolute;
-
       width:350px;
       height:350px;
-
       border-radius:50%;
-
       filter:blur(100px);
-
       opacity:.35;
-
       pointer-events:none;
     }
 
-    .glow1{
-      background:#ff8fab;
-
-      top:10%;
-      left:-100px;
-    }
-
-    .glow2{
-      background:#ffd166;
-
-      bottom:5%;
-      right:-100px;
-    }
+    .glow1{ background:#ff8fab; top:10%; left:-100px; }
+    .glow2{ background:#ffd166; bottom:5%; right:-100px; }
 
     .floating{
-  position:absolute;
-
-  width:250px;
-
-  animation:
-    floatingAnim 5s ease-in-out infinite;
-
-  pointer-events:none;
-
-  opacity:.9;
-
-  filter:
-    drop-shadow(
-      0 8px 15px rgba(0,0,0,.15)
-    );
-}
-.floating:hover{
-  transform:scale(1.08);
-}
-
-    .floating1{
-      top:12%;
-      left:8%;
+      position:absolute;
+      width:250px;
+      animation:floatingAnim 5s ease-in-out infinite;
+      pointer-events:none;
+      opacity:.9;
+      filter:drop-shadow(0 8px 15px rgba(0,0,0,.15));
     }
 
-    .floating2{
-      top:18%;
-      right:10%;
-
-      animation-delay:1s;
-    }
-
-    .floating3{
-      bottom:15%;
-      left:12%;
-
-      animation-delay:2s;
-    }
-
-    .floating4{
-      bottom:12%;
-      right:14%;
-
-      animation-delay:3s;
-    }
-
-    .floating5{
-      top:50%;
-      right:4%;
-
-      animation-delay:1.5s;
-    }
+    .floating1{ top:12%; left:8%; }
+    .floating2{ top:18%; right:10%; animation-delay:1s; }
+    .floating3{ bottom:15%; left:12%; animation-delay:2s; }
+    .floating4{ bottom:12%; right:14%; animation-delay:3s; }
+    .floating5{ top:50%; right:4%; animation-delay:1.5s; }
 
     @keyframes floatingAnim{
-      0%,100%{
-        transform:
-          translateY(0)
-          rotate(0deg);
-      }
-
-      50%{
-        transform:
-          translateY(-18px)
-          rotate(8deg);
-      }
+      0%,100%{ transform:translateY(0) rotate(0deg); }
+      50%{ transform:translateY(-18px) rotate(8deg); }
     }
 
     /* TITLE */
-
     .title{
       font-family:"Lobster",cursive;
-
       font-size:65px;
-
       color:#ff4f87;
-
       margin-bottom:15px;
-
-      animation:
-        glow 3s ease-in-out infinite;
+      animation:glow 3s ease-in-out infinite;
     }
 
     @keyframes glow{
-      0%,100%{
-        text-shadow:
-          0 0 10px rgba(255,79,135,.2);
-      }
-
-      50%{
-        text-shadow:
-          0 0 25px rgba(255,79,135,.55);
-      }
+      0%,100%{ text-shadow:0 0 10px rgba(255,79,135,.2); }
+      50%{ text-shadow:0 0 25px rgba(255,79,135,.55); }
     }
 
     .subtitle{
       font-size:20px;
       color:#7a4a5c;
-
       margin-bottom:35px;
     }
 
     /* CAKE */
-
     .cake{
       width:320px;
-
-      animation:
-        bounce 3s infinite ease-in-out;
-
-      filter:
-        drop-shadow(
-          0 10px 20px rgba(0,0,0,.15)
-        );
+      animation:bounce 3s infinite ease-in-out;
+      filter:drop-shadow(0 10px 20px rgba(0,0,0,.15));
     }
 
     @keyframes bounce{
-      0%,100%{
-        transform:translateY(0);
-      }
-
-      50%{
-        transform:translateY(-14px);
-      }
+      0%,100%{ transform:translateY(0); }
+      50%{ transform:translateY(-14px); }
     }
 
     /* MESSAGE CARD */
-
     .message-card{
       margin-top:40px;
-
       width:100%;
       max-width:900px;
-
-      background:
-        rgba(255,255,255,.55);
-
+      background:rgba(255,255,255,.55);
       backdrop-filter:blur(14px);
-
       padding:30px;
-
       border-radius:28px;
-
-      box-shadow:
-        0 15px 40px rgba(255,105,150,.12);
-
+      box-shadow:0 15px 40px rgba(255,105,150,.12);
       display:flex;
       align-items:center;
-
       gap:32px;
-
       color:#5f4150;
-
       font-family:"DynaPuff",system-ui;
-
       letter-spacing:.4px;
-
       transition:.4s ease;
-
       z-index:2;
     }
 
@@ -514,25 +302,17 @@
 
     .photo-frame{
       width:250px;
-
       flex-shrink:0;
-
       border-radius:20px;
-
       overflow:hidden;
-
-      box-shadow:
-        0 10px 25px rgba(0,0,0,.12);
+      box-shadow:0 10px 25px rgba(0,0,0,.12);
     }
 
     .photo-frame img{
       width:100%;
       height:320px;
-
       object-fit:cover;
-
       display:block;
-
       transition:.5s ease;
     }
 
@@ -542,29 +322,42 @@
 
     .message-text{
       text-align:left;
-
       color:#68495a;
-
       line-height:2.1;
-
       font-size:18px;
-
       font-family:"DynaPuff",system-ui;
-
       letter-spacing:.5px;
     }
 
+    /* BUBBLE */
+    .bubble-container{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      overflow:hidden;
+    }
+
+    .bubble{
+      position:absolute;
+      bottom:-80px;
+      border-radius:50%;
+      opacity:0;
+      animation:rise linear infinite;
+      background:radial-gradient(circle at 35% 35%, rgba(255,255,255,.7), rgba(255,182,210,.25));
+      border:1.5px solid rgba(255,150,190,.35);
+    }
+
+    @keyframes rise{
+      0%{ transform:translateY(0) scale(1); opacity:0; }
+      10%{ opacity:.75; }
+      90%{ opacity:.5; }
+      100%{ transform:translateY(-110vh) scale(1.1); opacity:0; }
+    }
+
     /* RESPONSIVE */
-
     @media(max-width:768px){
-
-      .title{
-        font-size:45px;
-      }
-
-      .cake{
-        width:230px;
-      }
+      .title{ font-size:45px; }
+      .cake{ width:230px; }
 
       .message-card,
       .message-card.reverse{
@@ -572,13 +365,8 @@
         text-align:center;
       }
 
-      .message-text{
-        text-align:center;
-      }
-
-      .balloon{
-        width:50px;
-      }
+      .message-text{ text-align:center; }
+      .balloon{ width:50px; }
     }
   </style>
 </head>
@@ -586,9 +374,10 @@
 <body>
 
   <!-- AUDIO -->
-   <audio autoplay loop>
-      <source src="musik.mp3" type="audio/mpeg">
-    </audio>
+  <audio id="bgm" loop>
+    <source src="musik.mp3" type="audio/mpeg">
+  </audio>
+
   <!-- CONFETTI -->
   <div class="confetti" style="left:5%;background:#ff4f87;animation-duration:7s"></div>
   <div class="confetti" style="left:15%;background:#ffd166;animation-duration:8s"></div>
@@ -604,35 +393,17 @@
     <!-- SCREEN 1 -->
     <section class="screen-one">
 
-      <!-- BALLOON -->
-      <img
-        src="https://cdn-icons-png.flaticon.com/512/3468/3468377.png"
-        class="balloon left"
-      />
+      <img src="https://cdn-icons-png.flaticon.com/512/3468/3468377.png" class="balloon left"/>
+      <img src="https://cdn-icons-png.flaticon.com/512/3468/3468377.png" class="balloon right"/>
 
-      <img
-        src="https://cdn-icons-png.flaticon.com/512/3468/3468377.png"
-        class="balloon right"
-      />
+      <div class="open-text">Tap To Open 🎉</div>
 
-      <!-- TEXT -->
-      <div class="open-text">
-        Tap To Open 🎉
-      </div>
-
-      <!-- ENVELOPE -->
       <div class="envelope-container" id="envelope">
-
-        <div class="letter">
-          For Azkia 💌
-        </div>
-
+        <div class="letter">For Azkia 💌</div>
         <div class="envelope-flap"></div>
         <div class="envelope-front"></div>
-
       </div>
 
-      <!-- EFFECT -->
       <div class="effect-layer" id="effects"></div>
 
     </section>
@@ -640,9 +411,9 @@
     <!-- SCREEN 2 -->
     <section class="screen-two">
 
-      <!-- DECOR -->
-      <div class="stars"></div>
+      <div class="bubble-container" id="bubbles"></div>
 
+      <div class="stars"></div>
       <div class="bg-glow glow1"></div>
       <div class="bg-glow glow2"></div>
 
@@ -650,77 +421,57 @@
       <img src="8.png" class="floating floating2">
       <img src="3.png" class="floating floating3">
       <img src="4.png" class="floating floating4">
-      <img src="5.png" class="floating floating5">  
+      <img src="5.png" class="floating floating5">
 
-      <!-- TITLE -->
-      <h1 class="title">
-        Happy Birthday 🎂
-      </h1>
+      <h1 class="title">Happy Birthday 🎂</h1>
 
       <p class="subtitle">
         I hope you like the website I created.
-hehehehehehehehehehe ✨
+        hehehehehehehehehehe ✨
       </p>
 
-      <!-- CAKE -->
-      <img
-        src="buket.png"
-        class="cake"
-        alt="Cake"
-      />
+      <img src="buket.png" class="cake" alt="Cake"/>
 
       <!-- MESSAGE 1 -->
       <div class="message-card">
-
         <div class="photo-frame">
           <img src="1c.png" alt="Foto">
         </div>
-
         <div class="message-text">
           "Hallooo Azkiaa👋 Jadii aku cuma mau ucapin 🥳🥳HAPPY BIRTHDAY!!🥳🎉 ke kamuu. Semoga di usia yang baru ditahun ini sampai tahun-tahun berikut nya kamu selalu diberikan kesehatan, dilancarkan segala urusannya, dan semua harapan serta doa-doa baik kamu segera dikabulkan yaaaa, Aamiiin.
         </div>
-
       </div>
 
       <!-- MESSAGE 2 -->
       <div class="message-card reverse">
-
         <div class="photo-frame">
           <img src="2c.png" alt="Foto">
         </div>
-
         <div class="message-text">
           Makasih ya udah selalu jadi sosok yang baik selama ini. Aku berharap kamu selalu dikelilingi oleh orang-orang yang sayang sama kamu, dan semoga hari-hari ke depan membawa banyak kebahagiaan serta kejutan manis buat kamu. Mungkin gaada kata-kata panjang yang bisa ngegambarin semua doa baikku buat kamu, pokonya yang terbaik deh!!
         </div>
-
       </div>
 
       <!-- MESSAGE 3 -->
       <div class="message-card">
-
         <div class="photo-frame">
           <img src="3c.png" alt="Foto">
         </div>
-
         <div class="message-text">
           Selamat ulang tahun yaa 🎉
           <br><br>
-
           Semoga di umur yang baru ini
           semua hal baik selalu datang ke hidup kamu.
           <br><br>
-
           Semoga makin bahagia,
           makin cantik,
           makin sukses,
           dan semua impian kamu
           bisa tercapai satu per satu ✨
           <br><br>
-
           Terima kasih udah jadi orang
           yang selalu bikin hari terasa spesial 🌸
         </div>
-
       </div>
 
     </section>
@@ -728,110 +479,97 @@ hehehehehehehehehehe ✨
   </div>
 
   <script>
-    const envelope =
-      document.getElementById("envelope");
-
-    const wrapper =
-      document.getElementById("wrapper");
-
-    const effects =
-      document.getElementById("effects");
+    const envelope = document.getElementById("envelope");
+    const wrapper  = document.getElementById("wrapper");
+    const effects  = document.getElementById("effects");
+    const bgm      = document.getElementById("bgm");
 
     let opened = false;
 
     envelope.addEventListener("click", () => {
-  document.getElementById("bgm").play();
-  // ... kode lainnya
-});
-
-    envelope.addEventListener("click", () => {
-
       if(opened) return;
-
       opened = true;
 
-      envelope.classList.add("open");
+      // play musik saat amplop diklik
+      bgm.play();
 
+      envelope.classList.add("open");
       createExplosion();
 
-      // hapus efek lama
+      // hapus efek setelah 5 detik
       setTimeout(() => {
         effects.innerHTML = "";
-      },5000);
+      }, 5000);
 
       // pindah ke screen 2
       setTimeout(() => {
+        wrapper.style.transform = "translateY(-100vh)";
 
-        wrapper.style.transform =
-          "translateY(-100vh)";
+        // aktifkan scroll
+        setTimeout(() => {
+          document.body.style.overflowY = "auto";
+          opened = false;
+        }, 1500);
 
-      },3200);
-
+      }, 3200);
     });
 
     function createExplosion(){
-
       const assets = [
-        "1.png",
-        "2.png",
-        "3.png",
-        "4.png",
-        "5.png",
-        "6.png",
-        "7.png",
-        "8.png",
-        "9.png",
-        "10.png"
+        "1.png","2.png","3.png","4.png","5.png",
+        "6.png","7.png","8.png","9.png","10.png"
       ];
 
       effects.innerHTML = "";
 
       for(let i = 0; i < 140; i++){
-
-        const item =
-          document.createElement("div");
-
+        const item = document.createElement("div");
         item.classList.add("heart");
 
-        const random =
-          assets[
-            Math.floor(
-              Math.random() * assets.length
-            )
-          ];
-
-        item.style.backgroundImage =
-          `url('${random}')`;
+        const random = assets[Math.floor(Math.random() * assets.length)];
+        item.style.backgroundImage = `url('${random}')`;
 
         const angle  = i * 0.25;
         const radius = i * 3;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
 
-        const x =
-          Math.cos(angle) * radius;
-
-        const y =
-          Math.sin(angle) * radius;
-
-        item.style.setProperty("--x",`${x}px`);
-        item.style.setProperty("--y",`${y}px`);
-        item.style.setProperty("--r",`${Math.random()*360}deg`);
-        item.style.setProperty("--size",`${40 + Math.random()*40}px`);
-
-        item.style.animationDelay =
-          `${i * 0.015}s`;
+        item.style.setProperty("--x", `${x}px`);
+        item.style.setProperty("--y", `${y}px`);
+        item.style.setProperty("--r", `${Math.random()*360}deg`);
+        item.style.setProperty("--size", `${40 + Math.random()*40}px`);
+        item.style.animationDelay = `${i * 0.015}s`;
 
         effects.appendChild(item);
       }
     }
 
-    // balik ke atas otomatis
+    // BUBBLE
+    const bubbleContainer = document.getElementById("bubbles");
+
+    for(let i = 0; i < 18; i++){
+      const b = document.createElement("div");
+      b.classList.add("bubble");
+
+      const size     = 20 + Math.random() * 50;
+      const left     = Math.random() * 100;
+      const duration = 8 + Math.random() * 10;
+      const delay    = Math.random() * 12;
+
+      b.style.width            = `${size}px`;
+      b.style.height           = `${size}px`;
+      b.style.left             = `${left}%`;
+      b.style.animationDuration = `${duration}s`;
+      b.style.animationDelay   = `${delay}s`;
+
+      bubbleContainer.appendChild(b);
+    }
+
+    // balik ke atas
     window.addEventListener("scroll", () => {
-
       if(window.scrollY < 50){
-
-        wrapper.style.transform =
-          "translateY(0vh)";
-
+        wrapper.style.transform = "translateY(0)";
+        document.body.style.overflowY = "hidden";
         envelope.classList.remove("open");
       }
     });
